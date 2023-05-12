@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rente</title>
+    <script type="text/javascript">
+        onload = createEvents;
+        
+        var beurt = 1;
+
+
+        function createEvents(){
+            for (var x=1;x++;x>10){
+                document.getElementById((x-1)).onmousedown = boter;
+ 
+            }
+        }
+        function boter(){
+            
+            if (this.innerHTML==""){
+                if (beurt == 1){
+                    beurt = 2
+                    this.innerHTML = "X";
+                    gewonnenVraagteken();
+                }
+                else if (beurt == 2){
+                    beurt = 1
+                    this.innerHTML = "O";
+                    gewonnenVraagteken();
+                }
+            }
+            else{
+                alert("Je kan niet 2x in 1 vakje plaatsen")
+            }
+        }
+        function reset(){
+
+            for (var x=1;x++;x>10){
+                document.getElementById((x-1)).innerHTML = "";
+                document.getElementById((x-1)).style.backgroundColor = "#ffffff";
+
+                beurt=1;
+            }
+
+
+        }
+        function gewonnenVraagteken(){
+            gewonnenVraagtekenTwee("1","2","3","X","One");
+            gewonnenVraagtekenTwee("1","4","6","X","One");
+            gewonnenVraagtekenTwee("1","5","9","X","One");
+            gewonnenVraagtekenTwee("4","5","6","X","One");
+            gewonnenVraagtekenTwee("7","8","9","X","One");
+            gewonnenVraagtekenTwee("7","5","3","X","One");
+            gewonnenVraagtekenTwee("2","5","8","X","One");
+            gewonnenVraagtekenTwee("3","6","9","X","One");
+
+            gewonnenVraagtekenTwee("1","2","3","O","Two");
+            gewonnenVraagtekenTwee("1","4","6","O","Two");
+            gewonnenVraagtekenTwee("1","5","9","O","Two");
+            gewonnenVraagtekenTwee("4","5","6","O","Two");
+            gewonnenVraagtekenTwee("7","8","9","O","Two");
+            gewonnenVraagtekenTwee("7","5","3","O","Two");
+            gewonnenVraagtekenTwee("2","5","8","O","Two");
+            gewonnenVraagtekenTwee("3","6","9","O","Two");
+
+
+
+
+            
+        }
+        function gewonnenVraagtekenTwee(a,b,c,d,e){
+            if (document.getElementById(a).innerHTML == d&&document.getElementById(b).innerHTML==d&&document.getElementById(c).innerHTML==d){
+                winAlert(e);
+                document.getElementById(a).style.backgroundColor = "#00ff00";
+                document.getElementById(b).style.backgroundColor = "#00ff00";
+                document.getElementById(c).style.backgroundColor = "#00ff00";
+            }
+        }
+
+        function winAlert(text){
+            setTimeout(`alert("Player ${text} has won!");`,50)
+        }
+
+    </script>
+    <style>
+        table tr td {
+            border:5px solid;
+            border-color:black;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 200px;
+            height:200px;
+            max-width: 200px;
+            max-height:200px;
+            text-align: center;
+            font-size: 150px;
+        }
+        table {
+            table-layout: fixed;
+
+            empty-cells:show;
+            table-layout: fixed;
+
+        }
+        #button{
+            font-size: 100px;
+            text-align: center;
+            display: block;
+            align-items: center;
+        }
+        #1{background-color: white;}
+        #2{background-color: white;}
+        #3{background-color: white;}
+        #4{background-color: white;}
+        #5{background-color: white;}
+        #6{background-color: white;}
+        #7{background-color: white;}
+        #8{background-color: white;}
+        #9{background-color: white;}
+
+
+
+    </style>
+</head>
+<body>
+    <table id="gameboard">
+        <tr><td id="1"></td><td id="4"></td><td id="7"></td>
+        <tr><td id="2"></td><td id="5"></td><td id="8"></td>
+        <tr><td id="3"></td><td id="6"></td><td id="9"></td>
+            
+    </table>
+    <div> 
+        <button id="button" onclick="reset()">RESET</button> 
+    </div>
+</body>
+</html>
